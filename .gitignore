@@ -34,6 +34,7 @@ Debug*/
 # OSX/Linux build products
 *.mak
 *.mak.vpc_crc
+*.a
 *.xcodeproj/
 obj*/
 !makefile_base_posix.mak
