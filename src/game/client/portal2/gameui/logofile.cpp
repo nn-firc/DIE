@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -11,7 +11,7 @@
 #endif
 #include <stdio.h>
 #include "UtlBuffer.h"
-#include <vgui/VGUI.h>
+#include <vgui/vgui.h>
 #include <vgui_controls/Controls.h>
 #include "FileSystem.h"
 

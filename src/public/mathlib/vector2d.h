@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -36,8 +36,6 @@
 #ifndef DEG2RAD
 	#define DEG2RAD( x  )  ( (float)(x) * (float)(M_PI_F / 180.f) )
 #endif
-
-extern void inline SinCos( float radians, float * RESTRICT sine, float * RESTRICT cosine );
 
 //=========================================================
 // 2D Vector2D
@@ -457,7 +455,7 @@ inline void Vector2DDivide( const Vector2D& a, const Vector2D& b, Vector2D& c )
 inline void Vector2DRotate( const Vector2D& vIn, float flDegrees, Vector2D& vOut )
 {
 	float c, s;
-	SinCos( DEG2RAD( flDegrees ), &s, &c );
+	FastSinCos( DEG2RAD( flDegrees ), &s, &c );
 
 	vOut.x = vIn.x*c - vIn.y*s;
 	vOut.y = vIn.x*s + vIn.y*c;

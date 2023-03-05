@@ -1,4 +1,4 @@
-//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =======
+//====== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. =======
 //
 // Purpose: 
 //
@@ -13,7 +13,7 @@
 #include "vgui_controls/PropertySheet.h"
 #include "tier1/UtlSymbol.h"
 #include "tier1/UtlBuffer.h"
-#include "tier1/KeyValues.h"
+#include "tier1/keyvalues.h"
 #include "filesystem.h"
 
 // memdbgon must be the last include file in a .cpp file!!!

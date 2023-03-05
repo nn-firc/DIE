@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: Places "detail" objects which are client-only renderable things
 //
@@ -8,7 +8,7 @@
 
 #include "vbsp.h"
 #include "bsplib.h"
-#include "KeyValues.h"
+#include "keyvalues.h"
 #include "UtlSymbol.h"
 #include "UtlVector.h"
 #include <io.h>

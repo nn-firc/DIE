@@ -12,7 +12,7 @@
 
 #include "VAddons.h"
 #include "VGenericPanelList.h"
-#include "KeyValues.h"
+#include "keyvalues.h"
 #include "VFooterPanel.h"
 #include "EngineInterface.h"
 #include "FileSystem.h"

@@ -17,7 +17,7 @@
 #include <vgui_controls/Button.h>
 #include <vgui_controls/QueryBox.h>
 #include <vgui_controls/CheckButton.h>
-#include "tier1/KeyValues.h"
+#include "tier1/keyvalues.h"
 #include <vgui_controls/Label.h>
 #include <vgui/ISystem.h>
 #include <vgui/ISurface.h>

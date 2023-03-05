@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -10,7 +10,7 @@
 #include "tier1/UtlBuffer.h"
 #include "tier1/UtlVector.h"
 #include "bitmap/imageformat.h"
-#include <KeyValues.h>
+#include <keyvalues.h>
 #include "tier1/strtools.h"
 #include "tier1/utlsymbol.h"
 #include "vtf/vtf.h"

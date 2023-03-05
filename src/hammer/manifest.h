@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2009, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2009, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -8,7 +8,7 @@
 #define MANIFEST_H
 #pragma once
 
-#include "KeyValues.h"
+#include "keyvalues.h"
 #include "UtlVector.h"
 #include "MapDoc.h"
 

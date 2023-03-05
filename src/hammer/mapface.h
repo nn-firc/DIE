@@ -1,4 +1,4 @@
-//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =======//
+//====== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. =======//
 //
 // Purpose: 
 //
@@ -21,7 +21,7 @@
 #include "DispManager.h"
 #include "mathlib/Vector4d.h"
 #include "UtlVector.h"
-#include "Color.h"
+#include "color.h"
 #include "smoothinggroupmgr.h"
 #include "detailobjects.h"
 

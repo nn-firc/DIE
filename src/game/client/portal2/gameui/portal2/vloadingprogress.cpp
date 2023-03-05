@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2008, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -15,7 +15,7 @@
 #include "vgui_controls/Image.h"
 #include "vgui_controls/ImagePanel.h"
 #include "gameui_util.h"
-#include "KeyValues.h"
+#include "keyvalues.h"
 #include "fmtstr.h"
 #include "FileSystem.h"
 

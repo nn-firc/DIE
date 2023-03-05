@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: Xbox controller implementation for inputsystem.dll
 //
@@ -16,7 +16,7 @@
 #include <cell/gcm.h>
 #endif 
 
-#include "vstdlib/IKeyValuesSystem.h"
+#include "vstdlib/ikeyvaluessystem.h"
 #include "materialsystem/imaterialsystem.h"
 #include "vgui/isurface.h"
 #include "vgui_controls/controls.h"

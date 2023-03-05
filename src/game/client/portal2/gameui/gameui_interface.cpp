@@ -42,12 +42,12 @@
 #include "matchmaking/imatchframework.h"
 #include "ixboxsystem.h"
 #include "IGameUIFuncs.h"
-#include "IEngineVGUI.h"
+#include "IEnginevgui.h"
 
 // vgui2 interface
 // note that GameUI project uses ..\vgui2\include, not ..\utils\vgui\include
 #include "vgui/Cursor.h"
-#include "tier1/KeyValues.h"
+#include "tier1/keyvalues.h"
 #include "vgui/ILocalize.h"
 #include "vgui/IPanel.h"
 #include "vgui/IScheme.h"

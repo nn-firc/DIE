@@ -15,7 +15,7 @@
 #include "vgui_controls/PHandle.h"
 #include "vgui_controls/MenuItem.h"
 #include "vgui_controls/MessageDialog.h"
-#include "KeyValues.h"
+#include "keyvalues.h"
 #include "utlvector.h"
 #include "tier1/CommandBuffer.h"
 

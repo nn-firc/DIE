@@ -12,9 +12,9 @@
 #include "vgui_internal.h"
 #include "VPanel.h"
 #include "UtlVector.h"
-#include <KeyValues.h>
+#include <keyvalues.h>
 
-#include <vgui/VGUI.h>
+#include <vgui/vgui.h>
 #include <vgui/ISystem.h>
 #include <vgui/IClientPanel.h>
 #include <vgui/IInputInternal.h>
