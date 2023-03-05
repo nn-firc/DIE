@@ -28,8 +28,8 @@ EXE_POSTFIX:=_osx
 endif
 
 ifeq ($(OS),Linux)
-CC=/valve/bin/gcc -m32
-CXX=/valve/bin/g++ -m32
+CC=gcc -m32
+CXX=g++ -m32
 EXE_POSTFIX=_linux
 endif
 
@@ -90,7 +90,7 @@ TIER1_SRC:= \
 	../../tier1/memstack.cpp \
 	../../tier1/stringpool.cpp \
 	../../tier1/utlbuffer.cpp \
-	../../tier1/utlsymbol.cpp 
+	../../tier1/utlsymbol.cpp
 
 VSTDLIB_SRC:= \
 	../../vstdlib/cvar.cpp \
@@ -138,7 +138,8 @@ else
 		../../tier1/characterset.cpp \
 		../../tier1/splitstring.cpp \
 		../../tier1/strtools.cpp \
-		../../tier1/exprevaluator.cpp \
+		../../tier1/strtools_unicode.cpp \
+		../../tier1/exprevaluator.cpp
 
 	VSTDLIB_SRC+= \
 		../../vstdlib/keyvaluessystem.cpp
@@ -177,9 +178,9 @@ endif
 else
 
 OUTDIR:=obj/$(OS)/release
-CONFIG_DEPENDENT_FLAGS:=-O3
+CONFIG_DEPENDENT_FLAGS:=-O2
 ifeq ($(OS),Linux)
-	CONFIG_DEPENDENT_FLAGS+=-g3 -ggdb -fpermissive
+	CONFIG_DEPENDENT_FLAGS+=-fpermissive
 endif 
 
 endif
@@ -189,7 +190,8 @@ OBJS:=$(addprefix $(OUTDIR)/, $(subst ../../, ,$(SRC:.cpp=.o)))
 
 OUTFILE:=$(OUTDIR)/vpc
 CFG_INC:=-I../../public -I../../common -I../../public/tier0 \
-	-I../../public/tier1 -I../../public/tier2 -I../../public/vstdlib
+	-I../../public/tier1 -I../../public/tier2 -I../../public/vstdlib \
+	-I../../thirdparty/SDL2/include
 
 
 CFLAGS=-D_POSIX -DPOSIX -DGNUC -DNDEBUG $(CONFIG_DEPENDENT_FLAGS) -msse -mmmx -pipe -w -fPIC $(CFG_INC)
