@@ -14,7 +14,6 @@
 #  +	command is executed even if Make is invoked in "do not exec" mode
 
 OS := $(shell uname)
-HOSTNAME := $(shell hostname)
 
 IDENTIFY_CURRENT_MAKEFILE_RELATIVE_FUNCTION = $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 MAKEFILE_BASE_POSIX_MAK := $(call IDENTIFY_CURRENT_MAKEFILE_RELATIVE_FUNCTION)
@@ -103,6 +102,12 @@ else
 	#-O1 -finline-functions
 endif
 
+# When we move to a modern toolchain, this will be necessary for early testing
+# until we can ensure that every user has libraries built against the new C++11
+# ABI. Further reading here:
+# https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html
+DEFINES += -D_GLIBCXX_USE_CXX11_ABI=0
+
 # CPPFLAGS == "c/c++ *preprocessor* flags" - not "cee-plus-plus flags"
 ARCH_FLAGS = 
 BUILDING_MULTI_ARCH = 0
@@ -114,13 +119,13 @@ endif
 
 
 CFLAGS = $(ARCH_FLAGS) $(CPPFLAGS) $(WARN_FLAGS) -fvisibility=$(SymbolVisibility) $(OptimizerLevel) -ffast-math -pipe $(GCC_ExtraCompilerFlags) -Usprintf -Ustrncpy -UPROTECTED_THINGS_ENABLE
-# In -std=gnu++11 mode we get lots of errors about "error: narrowing conversion". -fpermissive
+# In -std=c++11 mode we get lots of errors about "error: narrowing conversion". -fpermissive
 # turns these into warnings in gcc, and -Wno-c++11-narrowing suppresses them entirely in clang 3.1+.
 
 ifeq ($(OS),Linux)
-	CXXFLAGS = $(CFLAGS) -std=gnu++0x -fpermissive
+	CXXFLAGS = $(CFLAGS) -std=c++11 -fpermissive -Wno-narrowing
 else
-	CXXFLAGS = $(CFLAGS) -std=gnu++11 -stdlib=libc++ -Wno-c++11-narrowing -Wno-dangling-else
+	CXXFLAGS = $(CFLAGS) -std=c++11 -stdlib=libc++ -Wno-c++11-narrowing -Wno-dangling-else
 endif
 
 DEFINES += -DVPROF_LEVEL=1 -DGNUC
@@ -146,50 +151,18 @@ ifeq ($(OS),Linux)
 	# http://linux.die.net/man/1/ld and http://fedoraproject.org/wiki/Releases/FeatureBuildId.http://fedoraproject.org/wiki/Releases/FeatureBuildId
 	LDFLAGS += -Wl,--build-id
 
-	UUID_LIB =
-
-	# Set USE_STEAM_RUNTIME to build with the Steam Runtime. Otherwise uses
-	# The toolchain in /valve
-	ifneq ($(USE_STEAM_RUNTIME),1)
-		# dedicated server flags
-		ifeq ($(TARGET_PLATFORM),linux64)
-			VALVE_BINDIR = /valve/bin64/
-			MARCH_TARGET = nocona
-		else
-			VALVE_BINDIR = /valve/bin/
-			MARCH_TARGET = pentium4
-		endif
-		STRIP_FLAGS = -x
-		LIBCPP_EXT = a
-
+	ifeq ($(TARGET_PLATFORM),linux64)
+		MARCH_TARGET = nocona
 	else
-		# linux desktop client flags
-		VALVE_BINDIR =
-		DEFINES +=
-		# If the steam-runtime is available, use it. We should just default to using it when
-		#  buildbot and everyone has a bit of time to get it installed.
-		ifneq "$(wildcard /valve/steam-runtime/bin/)" ""
-			# The steam-runtime is incompatible with clang at this point, so disable it
-			# if clang is enabled.
-			ifneq ($(CXX),clang++)
-				VALVE_BINDIR = /valve/steam-runtime/bin/
-			endif
-		endif
-		GCC_VER =
-
-		ifeq ($(TARGET_PLATFORM),linux64)
-			MARCH_TARGET = nocona
-		else
-			MARCH_TARGET = pentium4
-		endif
-		# On dedicated servers, some plugins depend on global variable symbols in addition to functions.
-		# So symbols like _Z16ClearMultiDamagev should show up when you do "nm server_srv.so" in TF2.
-		STRIP_FLAGS = -x
-
-		LIBCPP_EXT = so
-
-		UUID_LIB = -luuid
+		MARCH_TARGET = pentium4
 	endif
+	# On dedicated servers, some plugins depend on global variable symbols in addition to functions.
+	# So symbols like _Z16ClearMultiDamagev should show up when you do "nm server_srv.so" in TF2.
+	STRIP_FLAGS = -x
+
+	LIBCPP_EXT = so
+
+	UUID_LIB = -luuid
 
 	# We want to make all TLS use the global-dynamic
 	# model, to avoid having to use -fpic but avoid problems with dlopen()
@@ -217,19 +190,16 @@ ifeq ($(OS),Linux)
 		# fails due to memory exhaustion.
 		CFLAGS += -g0
 	endif
-	CCACHE := $(SRCROOT)/devtools/bin/linux/ccache
+	CCACHE := ccache
 
-	ifeq ($(origin GCC_VER), undefined)
-	GCC_VER=-4.6
-	endif
 	ifeq ($(origin AR), default)
 		AR = $(VALVE_BINDIR)ar crs
 	endif
 	ifeq ($(origin CC),default)
-		CC = $(CCACHE) $(VALVE_BINDIR)gcc$(GCC_VER)	
+		CC = $(CCACHE) gcc
 	endif
 	ifeq ($(origin CXX), default)
-		CXX = $(CCACHE) $(VALVE_BINDIR)g++$(GCC_VER)
+		CXX = $(CCACHE) g++
 	endif
 	# Support ccache with clang. Add -Qunused-arguments to avoid excessive warnings due to
 	# a ccache quirk. Could also upgrade ccache.
