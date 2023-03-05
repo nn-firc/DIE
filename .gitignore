@@ -36,7 +36,7 @@ Debug*/
 *.mak.vpc_crc
 *.xcodeproj/
 obj*/
-!devtools/*.mak
+!makefile_base_posix.mak
 !utils/smdlexp/smdlexp.mak
 
 # Specific Source build products
