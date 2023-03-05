@@ -29,13 +29,8 @@ EXE_POSTFIX:=_osx
 endif
 
 ifeq ($(OS),Linux)
-ifeq ($(wildcard /valve/bin/gcc),)
 CC:=gcc
 CXX:=g++
-else
-CC:=/valve/bin/gcc-4.7
-CXX:=/valve/bin/g++-4.7
-endif
 EXE_POSTFIX:=_linux
 endif
 
@@ -125,7 +120,7 @@ TIER1_SRC:= \
 	../../../tier1/splitstring.cpp \
 	../../../tier1/strtools.cpp \
 	../../../tier1/strtools_unicode.cpp \
-	../../../tier1/exprevaluator.cpp \
+	../../../tier1/exprevaluator.cpp
 
 VSTDLIB_SRC:= \
 	../../../vstdlib/cvar.cpp \
@@ -173,7 +168,7 @@ OBJS:=$(addprefix $(OUTDIR)/, $(subst ../../../, ,$(SRC:.cpp=.o)))
 OUTFILE:=$(OUTDIR)/vpc
 CFG_INC:=-I../../../public -I../../../common -I../../../public/tier0 \
 	-I../../../public/tier1 -I../../../public/tier2 -I../../../public/vstdlib \
-	-I../../../thirdparty/clang/include/ -I../../../thirdparty/SDL2/
+	-I../../../thirdparty/clang/include/ -I../../../thirdparty/SDL2/include
 
 
 CFLAGS=-std=c++11 -DMAKE_VPC -D_POSIX -DPOSIX -DGNUC -DNDEBUG $(CONFIG_DEPENDENT_FLAGS) -msse -mmmx -pipe -w -fpermissive -fPIC $(CFG_INC)

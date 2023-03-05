@@ -180,7 +180,7 @@ else
 OUTDIR:=obj/$(OS)/release
 CONFIG_DEPENDENT_FLAGS:=-O2
 ifeq ($(OS),Linux)
-	CONFIG_DEPENDENT_FLAGS+=-fpermissive
+	CONFIG_DEPENDENT_FLAGS+=-g3 -ggdb -fpermissive
 endif 
 
 endif
