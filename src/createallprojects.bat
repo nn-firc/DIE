@@ -1,2 +1,3 @@
+pushd %~dp0
 devtools\bin\vpc.exe /csgo +csgo_partner /mksln csgo_partner.sln
-pause
+popd
