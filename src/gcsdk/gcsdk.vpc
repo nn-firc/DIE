@@ -1,0 +1,99 @@
+//-----------------------------------------------------------------------------
+//	GCSDK.VPC
+//
+//	Project Script for the Game Coordinator SDK
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		".."
+$Macro GENERATED_PROTO_DIR	"$SRCDIR\gcsdk\generated_proto"
+
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+$include "$SRCDIR\vpc_scripts\protobuf_builder.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories			"$BASE;$SRCDIR\gcsdk\steamextra;..;..\public;..\public\gcsdk;$SRCDIR\thirdparty\JSON_parser;."
+	}
+}
+
+$Project "gcsdk"
+{
+	$Folder "Source Files"
+	{
+		$File "gcclient.cpp"
+		$File "gcconstants.cpp"
+		$File "gclogger.cpp"
+		$File "gcmsg.cpp"
+		$File "job.cpp"
+		$File "jobmgr.cpp"
+		$File "jobtime.cpp"
+		$File "messagelist.cpp"
+		$File "msgprotobuf.cpp"
+		$File "netpacket.cpp"
+		$File "netpacketpool.cpp"
+		$File "protobufsharedobject.cpp"
+		$File "sharedobject.cpp"
+		$File "sharedobjectcache.cpp"
+		$File "gcclient_sharedobjectcache.cpp"
+		$File "steamextra/misc.cpp"
+		$File "steamextra/rtime.cpp"
+		$File "steamextra/steamid.cpp"
+		$File "steamextra/tier1/hashglobals.cpp"
+		$File "steamextra/tier1/tsmempool.cpp"
+		$File "steamextra/tier1/tsmultimempool.cpp"
+		$File "workthreadpool.cpp")
+		$File "webapi_response.cpp")
+		$File "$SRCDIR/thirdparty/JSON_parser/JSON_parser.c"
+	}
+
+	$Folder "Protobuf Files"
+	{
+		$File "steammessages.proto"
+		$Folder "Generated Files"
+		{
+			$DynamicFile "$GENERATED_PROTO_DIR/steammessages.pb.h"
+			$DynamicFile "$GENERATED_PROTO_DIR/steammessages.pb.cc"
+			{
+				$Configuration
+				{
+					$Compiler 
+					{
+						$Create/UsePrecompiledHeader	"Not Using Precompiled Headers" [$WINDOWS]
+					}
+				}
+			}
+		}
+		$File "gcsdk_gcmessages.proto"
+		$Folder "Generated Files"
+		{
+			$DynamicFile "$GENERATED_PROTO_DIR/gcsdk_gcmessages.pb.h"
+			$DynamicFile "$GENERATED_PROTO_DIR/gcsdk_gcmessages.pb.cc"
+			{
+				$Configuration
+				{
+					$Compiler 
+					{
+						$Create/UsePrecompiledHeader	"Not Using Precompiled Headers" [$WINDOWS]
+					}
+				}
+			}
+		}
+		$File "gcsystemmsgs.proto"
+		$Folder "Generated Files"
+		{
+			$DynamicFile "$GENERATED_PROTO_DIR/gcsystemmsgs.pb.h"
+			$DynamicFile "$GENERATED_PROTO_DIR/gcsystemmsgs.pb.cc"
+			{
+				$Configuration
+				{
+					$Compiler 
+					{
+						$Create/UsePrecompiledHeader	"Not Using Precompiled Headers" [$WINDOWS]
+					}
+				}
+			}
+		}
+	}
+}
