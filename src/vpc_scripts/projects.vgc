@@ -2352,5 +2352,20 @@ $Project "build_econ_items_game"
 
 $Project "zlib"
 {
-    "thirdparty\zlib-1.2.5\zlib.vpc" [$WINDOWS]
+	"thirdparty\zlib-1.2.5\zlib.vpc"
+}
+
+$Project "cryptopp"
+{
+	"external\cryptopp-8.70\cryptopp.vpc"
+}
+
+$Project "libpng"
+{
+	"thirdparty\libpng-1.6.39\libpng.vpc"
+}
+
+$Project "libsteam_api"
+{
+	"steamapi/steam_api.vpc"
 }

@@ -90,13 +90,12 @@ $Project
 	
 	$Folder	"Link Libraries" [$POSIX]
 	{
-		$Lib	"libpng" [$OSX]
-		$LibExternal "$SRCDIR/lib/$PLATFORM/release/libpng" [$LINUX]
+		$Lib	"libpng"
 	}
 
 	$Folder	"Link Libraries"
 	{
-		$Lib	"$LIBCOMMON\jpeglib"
-		$LibExternal	"$LIBPUBLIC\libz" [!$OSXALL]
+		$Lib		"jpeglib"
+		$LibExternal	"libz" [!$OSXALL]
 	}
 }

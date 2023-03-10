@@ -11,7 +11,7 @@ $Configuration
 {
 	$General
 	{
-		$AdditionalProjectDependencies			"gcsdk"
+		$AdditionalProjectDependencies			"opengc"
 	}
 }
 
@@ -19,6 +19,6 @@ $Project
 {
 	$Folder "Link Libraries"
 	{
-		$Lib	gcsdk
+		$Lib	opengc
 	}
 }

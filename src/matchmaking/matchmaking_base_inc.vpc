@@ -141,7 +141,7 @@ $Project
 	
 	$Folder "Link Libraries"
 	{
-		$Lib gcsdk [!$X360 && !$PS3]
+		$Lib opengc [!$X360 && !$PS3]
 	}
 }
 

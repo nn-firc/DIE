@@ -362,7 +362,7 @@ master_selection (j_decompress_ptr cinfo)
   }
 
   /* Initialize principal buffer controllers. */
-  use_c_buffer = cinfo->inputctl->has_multiple_scans || cinfo->buffered_image;
+  use_c_buffer = (boolean)(cinfo->inputctl->has_multiple_scans || cinfo->buffered_image);
   jinit_d_coef_controller(cinfo, use_c_buffer);
 
   if (! cinfo->raw_data_out)

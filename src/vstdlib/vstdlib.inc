@@ -36,7 +36,7 @@ $Project
 		$File	"cvar.cpp"
 		$File	"jobthread.cpp"
 		$File	"keyvaluessystem.cpp"
-		$File	"osversion.cpp"
+		$File	"osversion.cpp"			[$WINDOWS]
 		$File	"processutils.cpp"			[$WINDOWS]
 		$File	"random.cpp"
 		$File	"vcover.cpp"

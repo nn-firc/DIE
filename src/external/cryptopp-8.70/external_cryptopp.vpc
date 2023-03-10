@@ -1,0 +1,22 @@
+//
+// This file configures include directories and link libraries for Crypto++
+//
+
+$MacroRequired "PLATFORM"
+$MacroRequired "EXTERNALCRYPTOPP"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories			"$BASE;$SRCDIR\external\$EXTERNALCRYPTOPP"
+	}
+}
+
+$Project
+{
+        $Folder "Link Libraries"
+        {
+                $Lib						"libcryptopp" [!$DEDICATED]
+        }
+}

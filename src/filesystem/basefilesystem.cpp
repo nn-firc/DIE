@@ -1819,7 +1819,7 @@ bool CBaseFileSystem::ReadToBuffer( FileHandle_t fp, CUtlBuffer &buf, int nMaxBy
 	if ( nMaxBytes > 0 )
 	{
 		// can't read more than file has
-		nBytesToRead = min( nMaxBytes, nBytesToRead );
+		nBytesToRead = MIN( nMaxBytes, nBytesToRead );
 	}
 
 	int nBytesRead = 0;
@@ -1949,7 +1949,7 @@ int CBaseFileSystem::ReadFileEx( const char *pFileName, const char *pPath, void 
 	int nBytesRead = 0;
 	if ( nMaxBytes > 0 )
 	{
-		nBytesToRead = min( nMaxBytes, nBytesToRead );
+		nBytesToRead = MIN( nMaxBytes, nBytesToRead );
 		if ( bNullTerminate )
 		{
 			nBytesToRead--;
@@ -2109,6 +2109,7 @@ bool CBaseFileSystem::UnzipFile( const char *pFileName, const char *pPath, const
 #endif
 
 	IZip::ReleaseZip( pZip );
+
 	return true;
 }
 
@@ -5652,7 +5653,7 @@ bool CFileHandle::EndOfFile()
 
 int CMemoryFileHandle::Read( void* pBuffer, int nDestSize, int nLength )
 {
-	nLength = min( nLength, (int) m_nLength - m_nPosition );
+	nLength = MIN( nLength, (int) m_nLength - m_nPosition );
 	if ( nLength > 0 )
 	{
 		Assert( m_nPosition >= 0 );

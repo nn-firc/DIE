@@ -4498,9 +4498,6 @@ void NET_TerminateConnection( int sock, const ns_address &peer )
 #undef Verify
 #endif
 
-#define bswap_16 __bswap_16
-#define bswap_64 __bswap_64
-
 #include "cryptlib.h"
 #include "rsa.h"
 #include "osrng.h"

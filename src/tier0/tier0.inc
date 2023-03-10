@@ -57,7 +57,7 @@ $Project
 		$File	"systeminformation.cpp"
 		$File	"threadtools.cpp"
 		$File	"tslist.cpp"
-		$File	"vcrmode.cpp"		[$WINDOWS]
+		$File	"vcrmode.cpp" [$WINDOWS]
 		$File	"vatoms.cpp"
 		$File	"vprof.cpp"
 		$File	"vtuneinterface.cpp"

@@ -543,7 +543,7 @@ prepare_for_pass (j_compress_ptr cinfo)
     ERREXIT(cinfo, JERR_NOT_COMPILED);
   }
 
-  master->pub.is_last_pass = (master->pass_number == master->total_passes-1);
+  master->pub.is_last_pass = (boolean)(master->pass_number == master->total_passes-1);
 
   /* Set up progress monitor's pass info if present */
   if (cinfo->progress != NULL) {
