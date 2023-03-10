@@ -452,12 +452,12 @@ $Project "gcsdk"
 	"gcsdk\gcsdk_game.vpc"		[$WINDOWS||$POSIX]
 }
 
-$$Project "gcsdk_gc"
+$Project "gcsdk_gc"
 {
 	"gcsdk\gcsdk_gc.vpc"		[$WINDOWS||$POSIX]
 }
 
-Project "opengc"
+$Project "opengc"
 {
 	"gcsdk/gcsdk.vpc"		[$WINDOWS||$POSIX]
 }

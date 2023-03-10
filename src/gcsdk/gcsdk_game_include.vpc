@@ -1,0 +1,24 @@
+//-----------------------------------------------------------------------------
+//	gcsdk_include.vpc
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$MacroRequired "PLATFORM"
+$MacroRequired GENERATED_PROTO_DIR
+
+$Configuration
+{
+	$General
+	{
+		$AdditionalProjectDependencies			"gcsdk"
+	}
+}
+
+$Project
+{
+	$Folder "Link Libraries"
+	{
+		$Lib	gcsdk
+	}
+}

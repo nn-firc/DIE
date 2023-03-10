@@ -75,6 +75,11 @@ $Project
 				}
 			}
 		}
+
+		$File "$SRCDIR/game/shared/gc_clientsystem.cpp"
+		$File "$SRCDIR/game/shared/gc_clientsystem.h"
+		$File "$SRCDIR/game/client/cstrike15/cs_gc_client.cpp"
+		$File "$SRCDIR/game/client/cstrike15/cs_gc_client.h"
 	}
 
 	$Folder "Link Libraries" [$WINDOWS]

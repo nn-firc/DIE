@@ -1708,20 +1708,6 @@ bool CBaseClientState::ProcessConnectionlessPacket( netpacket_t *packet )
 				return false;
 			}
 
-			// The host can disable access to secure servers if you load unsigned code (mods, plugins, hacks)
-			if ( dc.m_bGSSecure && !Host_IsSecureServerAllowed() )
-			{
-				m_netadrReserveServer.RemoveAll();
-				m_nServerReservationCookie = 0;				
-				m_pServerReservationCallback = NULL;
-#if !defined(DEDICATED)
-				g_pMatchFramework->CloseSession();
-				g_pMatchFramework->GetEventsSubscription()->BroadcastEvent( new KeyValues( "OnClientInsecureBlocked", "reason", "connect" ) );
-#endif
-				Disconnect();
-				return false;
-			}	
-
 			char context[ 256 ] = { 0 };
 			msg.ReadString( context, sizeof( context ) );
 
@@ -2295,28 +2281,10 @@ void CBaseClientState::HandleDeferredConnection()
 			kvCreateSession->SetPtr( "ptr", &uiReservationCookie );
 			g_pMatchFramework->GetEventsSubscription()->BroadcastEvent( kvCreateSession );
 		}
-
-		if ( !uiReservationCookie )
-		{
-			Disconnect( true );	// disconnect the current attempt, will retry with GC reservation
-			{
-				KeyValues *kvCreateSession = new KeyValues( "OnEngineLevelLoadingSession" );
-				kvCreateSession->SetString( "reason", "CreateSession" );
-				kvCreateSession->SetString( "adr", ns_address_render( dc.m_adrServerAddress ).String() );
-				kvCreateSession->SetUint64( "gsid", dc.m_unGSSteamID );
-				// NO PTR HERE, FORCE COOKIE: kvCreateSession->SetPtr( "ptr", &uiReservationCookie );
-				g_pMatchFramework->GetEventsSubscription()->BroadcastEvent( kvCreateSession );
-			}
-		}
-		else
-			SendConnectPacket( dc.m_adrServerAddress, dc.m_nChallenge, dc.m_nAuthprotocol, dc.m_unGSSteamID, dc.m_bGSSecure );
 #endif
 	}
-	else
 #endif
-	{
-		SendConnectPacket ( dc.m_adrServerAddress, dc.m_nChallenge, dc.m_nAuthprotocol, dc.m_unGSSteamID, dc.m_bGSSecure );
-	}
+	SendConnectPacket ( dc.m_adrServerAddress, dc.m_nChallenge, dc.m_nAuthprotocol, dc.m_unGSSteamID, dc.m_bGSSecure );
 }
 
 
