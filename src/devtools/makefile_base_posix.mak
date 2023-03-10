@@ -137,8 +137,12 @@ LDFLAGS = $(CFLAGS) $(GCC_ExtraLinkerFlags) $(OptimizerLevel)
 GENDEP_CXXFLAGS = -MD -MP -MF $(@:.o=.P) 
 MAP_FLAGS =
 
+ifeq ($(warn),0)
+WARN_FLAGS = -w
+else
 WARN_FLAGS = -Wall -Wextra -Wshadow -Wno-invalid-offsetof
 WARN_FLAGS += -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-value -Wno-missing-field-initializers -Wno-sign-compare -Wno-reorder -Wno-invalid-offsetof -Wno-float-equal -Wno-switch -Wno-ignored-attributes -fdiagnostics-show-option -Wformat -Werror=format-security -Wstrict-aliasing=2
+endif
 
 
 ifeq ($(OS),Linux)
